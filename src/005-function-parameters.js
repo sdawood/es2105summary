@@ -34,9 +34,9 @@ function funcWithNamedParams({param1, param2, param3}) {
     return [param1, param2, param3]
 }
 
-console.log(funcWithNamedParams(params))
+console.log('funcWithNamedParams', funcWithNamedParams(params))
 // VS, expanded result array
-console.log(...funcWithNamedParams(params))
+console.log('funcWithNamedParams', ...funcWithNamedParams(params))
 
 // as in object destructuring, default values and computed defaults based on PREVIOUS key's value is allowed
 
@@ -51,7 +51,7 @@ console.log(funcWithNamedParamsPlus(params))
 try {
     funcWithNamedParams()
 } catch(err) {
-    console.log(err)
+    console.log(err.message) // Cannot read property 'param1' of undefined
 }
 
 // To work around that, the whole params object can have a default value
@@ -59,9 +59,11 @@ try {
 function funcWithNamedParams2({param1, param2, param3, paramExtra='paramExtraDefaultValue'} = {}) {
     return [param1, param2, param3, paramExtra]
 }
-console.log(funcWithNamedParams2())
-console.log(funcWithNamedParams2(params))
-console.log(funcWithNamedParams2({...params, paramExtra: 'PARAM_EXTRA_VALUE'}))
+console.log(funcWithNamedParams2()) // [ undefined, undefined, undefined, 'paramExtraDefaultValue' ]
+console.log(funcWithNamedParams2(params)) // [ 'value1', 'value2', 'value3', 'paramExtraDefaultValue' ]
+
+// or by using neat object spread operator
+console.log(funcWithNamedParams2({...params, paramExtra: 'PARAM_EXTRA_VALUE'})) // [ 'value1', 'value2', 'value3', 'PARAM_EXTRA_VALUE' ]
 
 // no need to use the `arguments` object
 // ECMAScript 5: arguments

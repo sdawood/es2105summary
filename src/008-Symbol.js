@@ -31,7 +31,7 @@ logger.log(callHours(SATURDAY))
 try {
     logger.log(callHours(Symbol('Tuesday')))
 } catch (err) {
-    logger.error(err)
+    logger.error(err.message) // TypeError: Cannot convert a Symbol value to a string
 }
 
 // Symbols make perfect object keys

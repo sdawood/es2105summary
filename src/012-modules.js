@@ -17,5 +17,7 @@ logError('named exports can be renamed using as')
 LOGGER.log('the whole namespace can be imported and given an alias via `as`')
 myDefaultLogger.log('if you want to import default and named on the same line, default must come first as shown above')
 
-
+// es2015+ aim to have imports statically analyzed, hence, using import inside a function body is a syntax error ...
+// TODO: move all your require/imports to the top of the module
+// Gotcha: how to do conditional imports? do we have that need?
 
